@@ -76,11 +76,11 @@ li button:hover {
 
 
 .app-wrapper {
-  max-width: 600px;
-  margin: 50px auto;
+  max-width: 900px;
+  margin: 100px auto;
   background: #fff;
   padding: 30px;
-  border-radius: 12px;
+  border-radius: 20px;
 }
 
 .app-heading {

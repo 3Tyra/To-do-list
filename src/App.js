@@ -4,17 +4,17 @@ import TaskList from './components/TaskList';
 
 function App() {
   const [tasks, setTasks] = useState([
-    { id: 1, text: "Pay Internet Bill" },
-    { id: 2, text: "Settle Electricity Bill" },
-    { id: 3, text: "Cancel Netflix" },
-    { id: 4, text: "Team Lunch" },
-    { id: 5, text: "Book Uber" }
+    { id: 1, text: "Finish React assignment"},
+    { id: 2, text: "Clean my room" },
+    { id: 3, text: "Watch class recordings" },
+    { id: 4, text: "Play Volleyball"},
+    { id: 5, text: "Walk for 1hr"}
   ]);
 
   const [taskToEdit, setTaskToEdit] = useState(null);
 
   const addTask = (task) => {
-    setTasks([...tasks, { id: Date.now(), text: task }]);
+    setTasks([...tasks, { id: Date.now(), text: task, completed: false }]);
   };
 
   const deleteTask = (id) => {
@@ -28,11 +28,22 @@ function App() {
     setTaskToEdit(null);
   };
 
+  const toggleTaskCompletion = (id) => {
+    setTasks(tasks.map(task =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    ));
+  };
+
   return (
     <div className="app-wrapper">
-      <h1 className="app-heading">To-do-List</h1>
+      <h1 className="app-heading">My To-do List </h1>
       <TaskForm addTask={addTask} taskToEdit={taskToEdit} editTask={editTask} />
-      <TaskList tasks={tasks} onDelete={deleteTask} onEdit={setTaskToEdit} />
+      <TaskList
+        tasks={tasks}
+        onDelete={deleteTask}
+        onEdit={setTaskToEdit}
+        onToggle={toggleTaskCompletion}
+      />
     </div>
   );
 }

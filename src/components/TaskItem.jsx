@@ -1,12 +1,15 @@
 import React from 'react';
 
-function TaskItem({ task, onDelete, onEdit }) {
+function TaskItem({ task, onDelete, onEdit, onToggle }) {
   return (
-    <li className="flex justify-between items-center bg-gray-100 p-2 rounded mb-2">
+    <li className={`task-item ${task.completed ? 'completed' : ''}`}>
       <span>{task.text}</span>
-      <div>
-        <button onClick={onEdit} className="text-yellow-500 mr-2">Edit</button>
-        <button onClick={onDelete} className="text-red-500">Delete</button>
+      <div className="task-buttons">
+        <button onClick={() => onEdit(task)}>Edit</button>
+        <button onClick={() => onDelete(task.id)}>Delete</button>
+        <button onClick={() => onToggle(task.id)}>
+          {task.completed ? 'Undo' : 'Done'}
+        </button>
       </div>
     </li>
   );
